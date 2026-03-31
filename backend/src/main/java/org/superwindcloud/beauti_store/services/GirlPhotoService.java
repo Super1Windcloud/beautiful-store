@@ -24,12 +24,20 @@ public class GirlPhotoService {
 
     Files.walk(assetPath)
         .filter(Files::isRegularFile)
-        .filter(path -> pattern.matcher(path.getFileName().toString()).matches())
+        .filter(
+            path -> {
+              Path fileName = path.getFileName();
+              return fileName != null && pattern.matcher(fileName.toString()).matches();
+            })
         .forEach(
             path -> {
               try {
+                Path fileName = path.getFileName();
+                if (fileName == null) {
+                  return;
+                }
                 GirlPhoto photo = new GirlPhoto();
-                photo.setName(path.getFileName().toString());
+                photo.setName(fileName.toString());
                 photo.setData(Files.readAllBytes(path));
                 photo.setContentType("image/jpeg");
                 repository.save(photo);
