@@ -1,0 +1,68 @@
+# PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/beauti_store
+spring.datasource.username=beauti_store
+spring.datasource.password=beauti_store
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+#spring-boot
+spring.application.name=beauti_store
+server.port=33333
+spring.mvc.static-path-pattern=/**
+spring.web.resources.static-locations=classpath:/static/
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+
+
+
+# sprint mail
+spring.mail.host=smtp.qq.com
+spring.mail.port=587
+spring.mail.username=
+spring.mail.password=
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.debug=true
+spring.mail.default-encoding=UTF-8
+spring.mail.protocol=smtp
+spring.mail.test-connection=false
+
+
+# docker
+spring.docker.compose.enabled=true
+
+
+
+# spring security
+spring.security.user.name=admin
+spring.security.user.password=123456
+
+
+# cors
+spring.profiles.active=dev
+
+
+# redis
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+spring.data.redis.jedis.pool.enabled=true
+spring.data.redis.client-name=beauti_store_redis
+spring.data.redis.database=0
+spring.data.redis.timeout=3000
+
+
+
+
+# GitHub
+spring.security.oauth2.client.registration.github.client-id=
+spring.security.oauth2.client.registration.github.client-secret=
+spring.security.oauth2.client.registration.github.redirect-uri=http://localhost:33333/login/oauth2/code/github
+spring.security.oauth2.client.registration.github.scope=read:user,user:email
+
+# Google
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
+spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:33333/login/oauth2/code/google
+spring.security.oauth2.client.registration.google.scope=openid,profile,email
+

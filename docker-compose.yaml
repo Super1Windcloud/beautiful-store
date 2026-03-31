@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  # PostgreSQL 数据库服务
+  postgres:
+    image: postgres:15
+    container_name: beauti_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: beauti_store
+      POSTGRES_USER: beauti_store
+      POSTGRES_PASSWORD: beauti_store
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - beauti_net
+
+  # Redis 服务
+  redis:
+    image: redis:7
+    container_name: beauti_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - beauti_net
+
+  # Spring Boot 应用服务
+  beauti_store:
+    build: .  #  execute  docker-compose build
+    container_name: beauti_store_app
+    ports:
+      - "33333:33333"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - beauti_net
+#    volumes:
+#      - ./:/app
+#    command: [ "java", "-jar", "target/beauti_store-0.0.1-SNAPSHOT.jar" ]
+
+volumes:
+  pgdata:
+  redisdata:
+
+networks:
+  beauti_net:
