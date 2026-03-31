@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class system {
+public class SystemUtils {
   public static List<String> readGirlImages() throws IOException {
     List<String> imageNames = new ArrayList<>();
 

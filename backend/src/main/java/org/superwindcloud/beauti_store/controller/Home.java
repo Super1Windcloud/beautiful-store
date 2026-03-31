@@ -1,7 +1,11 @@
 package org.superwindcloud.beauti_store.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +27,7 @@ import org.superwindcloud.beauti_store.repository.AccountRepo;
 import org.superwindcloud.beauti_store.repository.GirlPhotoRepository;
 import org.superwindcloud.beauti_store.repository.GoodsRepo;
 import org.superwindcloud.beauti_store.services.GirlPhotoService;
-import org.superwindcloud.beauti_store.utils.system;
+import org.superwindcloud.beauti_store.utils.SystemUtils;
 
 @RestController
 @Data
@@ -200,7 +204,7 @@ public class Home {
 
     List<String> base64Images = new ArrayList<>();
     try {
-      var images = system.readGirlImages();
+      var images = SystemUtils.readGirlImages();
       images.forEach(
           image -> {
             try {
